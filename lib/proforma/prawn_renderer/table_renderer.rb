@@ -14,9 +14,12 @@ module Proforma
     # This class understands how to ender a Proforma::Modeling::Table component.
     class TableRenderer < Renderer
       def render(table)
+        row_for_widths  = table.header.rows.first
+        column_widths   = row_for_widths ? make_column_widths(row_for_widths) : {}
+
         pdf.table(
           make_all_rows(table),
-          column_widths: make_column_widths(table.header.rows.first),
+          column_widths: column_widths,
           width: total_width
         )
       end
@@ -38,15 +41,12 @@ module Proforma
       end
 
       def make_column_widths(row)
-        return {} unless row
-
         column_widths = {}
 
         row.cells.each_with_index do |cell, index|
-          width = cell.width
-          next unless width
+          next unless cell.width
 
-          column_widths[index] = calculate_width(width)
+          column_widths[index] = calculate_width(cell.width)
         end
 
         column_widths
