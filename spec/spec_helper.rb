@@ -8,7 +8,6 @@
 #
 
 require 'yaml'
-
 require 'pry'
 require 'pdf/inspector'
 
@@ -18,3 +17,9 @@ SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 
 require './lib/proforma/prawn_renderer'
+
+def yaml_read(file)
+  # rubocop:disable Security/YAMLLoad
+  YAML.load(File.open(file))
+  # rubocop:enable Security/YAMLLoad
+end

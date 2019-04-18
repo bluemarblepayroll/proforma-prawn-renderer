@@ -7,8 +7,17 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+require_relative 'renderer'
+
 module Proforma
   class PrawnRenderer
-    VERSION = '1.0.0'
+    # This class understands how to ender a Proforma::Modeling::Separator component.
+    class SpacerRenderer < Renderer
+      AMOUNT = 15
+
+      def render(_separator)
+        pdf.move_down(AMOUNT)
+      end
+    end
   end
 end

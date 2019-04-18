@@ -1,0 +1,71 @@
+data:
+- id: 1
+  first: Will
+  last: Smith
+  username: will_smith
+  login_count: 9219
+  phone_numbers:
+  - type: cell
+    number: 555-444-3333
+  - type: fax
+    number: 333-444-2222
+- id: 2
+  first: Martin
+  last: Lawrence
+  username: mlaw10
+  login_count: 8077
+  phone_numbers:
+  - type: home
+    number: 999-888-7777
+- id: 3
+  first: Will
+  last: Ferrell
+  username: will.ferrell
+  login_count: 190890
+  phone_numbers:
+
+template: !ruby/object:Proforma::Template
+  output: :record
+  title: User Details
+  children:
+  - !ruby/object:Proforma::Modeling::Header
+    value: User Details
+  - !ruby/object:Proforma::Modeling::Separator {}
+  - !ruby/object:Proforma::Modeling::Text
+    value: 'The following is user details'
+  - !ruby/object:Proforma::Modeling::Pane
+    columns:
+    - !ruby/object:Proforma::Modeling::Pane::Column
+      label_width: 25.0
+      lines:
+      - !ruby/object:Proforma::Modeling::Pane::Line
+        label: ID Number
+        value: $:id
+      - !ruby/object:Proforma::Modeling::Pane::Line
+        label: First Name
+        value: $:first
+      - !ruby/object:Proforma::Modeling::Pane::Line
+        label: Last Name
+        value: $:last
+  - !ruby/object:Proforma::Modeling::Spacer {}
+  - !ruby/object:Proforma::Modeling::Header
+    value: Phone Numbers
+  - !ruby/object:Proforma::Modeling::DataTable
+    property: phone_numbers
+    empty_message: No phone numbers.
+    columns:
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: Type
+      body: $:type
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: Number
+      body: $:number
+  - !ruby/object:Proforma::Modeling::Spacer {}
+
+strings:
+- User Details The following is user details ID Number 1 First Name Will
+  Last Name Smith Phone Numbers Type Number cell 555-444-3333 fax 333-444-2222
+- User Details The following is user details ID Number 2 First Name
+  Martin Last Name Lawrence Phone Numbers Type Number home 999-888-7777
+- User Details The following is user details ID Number 3
+  First Name Will Last Name Ferrell Phone Numbers No phone numbers.

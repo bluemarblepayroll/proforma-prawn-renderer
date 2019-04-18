@@ -1,0 +1,132 @@
+data:
+  users:
+  - id: 1
+    first: Will
+    last: Smith
+    username: will_smith
+    login_count: 9219
+    phone_numbers:
+    - type: cell
+      number: 555-444-3333
+    - type: fax
+      number: 333-444-2222
+  - id: 2
+    first: Martin
+    last: Lawrence
+    username: mlaw10
+    login_count: 8077
+    phone_numbers:
+    - type: home
+      number: 999-888-7777
+  - id: 3
+    first: Will
+    last: Ferrell
+    username: will.ferrell
+    login_count: 190890
+    phone_numbers:
+
+renderer: !ruby/object:Proforma::PrawnRenderer
+  options: !ruby/object:Proforma::PrawnRenderer::Options
+    bold_font_style: :bold
+    font_name: Helvetica
+    header_font_size: 12
+    text_font_size: 9
+
+template: !ruby/object:Proforma::Template
+  output: :collection
+  title: User List
+  children:
+  - !ruby/object:Proforma::Modeling::Banner
+    details: "555 N. Michigan Ave.\nChicago, IL 62626\n555-555-5555 ext. 55555"
+    image: logo
+    image_width: 60
+    image_height: 48
+    title: Some Random System
+  - !ruby/object:Proforma::Modeling::Spacer {}
+  - !ruby/object:Proforma::Modeling::Header
+    value: User List
+  - !ruby/object:Proforma::Modeling::Separator {}
+  - !ruby/object:Proforma::Modeling::Text
+    value: The following is a list of users
+  - !ruby/object:Proforma::Modeling::Spacer {}
+  - !ruby/object:Proforma::Modeling::DataTable
+    property: users
+    aggregators:
+      - !ruby/object:Proforma::Modeling::DataTable::Aggregator
+        property: login_count
+        function: sum
+        name: login_count_sum
+      - !ruby/object:Proforma::Modeling::DataTable::Aggregator
+        property: login_count
+        function: ave
+        name: login_count_ave
+    columns:
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: ID Number
+      body: $:id
+      footer: Login Count Ave.
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: First Name
+      body: $:first
+      footer: $:login_count_ave
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: Last Name
+      body: $:last
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: Username
+      body: $:username
+      footer: Login Count Sum
+    - !ruby/object:Proforma::Modeling::DataTable::Column
+      header: Login Count
+      footer: $:login_count_sum
+      body: $:login_count
+  - !ruby/object:Proforma::Modeling::Grouping
+    property: users
+    children:
+    - !ruby/object:Proforma::Modeling::Spacer {}
+    - !ruby/object:Proforma::Modeling::Grouping
+      children:
+      - !ruby/object:Proforma::Modeling::Header
+        value: 'User Details'
+      - !ruby/object:Proforma::Modeling::Separator {}
+      - !ruby/object:Proforma::Modeling::Pane
+        columns:
+        - !ruby/object:Proforma::Modeling::Pane::Column
+          label_width: 25.0
+          lines:
+          - !ruby/object:Proforma::Modeling::Pane::Line
+            label: ID Number
+            value: $:id
+          - !ruby/object:Proforma::Modeling::Pane::Line
+            label: First Name
+            value: $:first
+          - !ruby/object:Proforma::Modeling::Pane::Line
+            label: Last Name
+            value: $:last
+      - !ruby/object:Proforma::Modeling::Spacer {}
+      - !ruby/object:Proforma::Modeling::Header
+        value: Phone Numbers
+      - !ruby/object:Proforma::Modeling::DataTable
+        property: phone_numbers
+        empty_message: No phone numbers.
+        columns:
+        - !ruby/object:Proforma::Modeling::DataTable::Column
+          header: Type
+          body: $:type
+        - !ruby/object:Proforma::Modeling::DataTable::Column
+          header: Number
+          body: $:number
+      - !ruby/object:Proforma::Modeling::Spacer {}
+
+strings:
+- >-
+  Some Random System 555 N. Michigan Ave. Chicago, IL 62626 555-555-5555 ext. 55555
+  User List The following is a list of users ID Number First Name Last Name Username
+  Login Count
+  1 Will Smith will_smith 9219 2 Martin Lawrence mlaw10 8077
+  3 Will Ferrell will.ferrell 190890
+  Login Count Ave. 69395.333333333333333333 Login Count Sum 208186.0
+  User Details ID Number 1 First Name Will Last Name Smith Phone Numbers Type Number
+  cell 555-444-3333 fax 333-444-2222 User Details ID Number 2 First Name Martin Last Name
+  Lawrence Phone Numbers Type Number home 999-888-7777 User Details ID Number 3 First Name
+  Will Last Name Ferrell Phone Numbers No phone numbers.
