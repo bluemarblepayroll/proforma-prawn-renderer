@@ -36,87 +36,74 @@ template: !ruby/object:Proforma::Template
   output: :collection
   title: User List
   children:
-  - !ruby/object:Proforma::Modeling::Banner
+  - type: Banner
     details: "555 N. Michigan Ave.\nChicago, IL 62626\n555-555-5555 ext. 55555"
     image: logo
     image_width: 60
     image_height: 48
     title: Some Random System
-  - !ruby/object:Proforma::Modeling::Spacer {}
-  - !ruby/object:Proforma::Modeling::Header
+  - type: Spacer
+  - type: Header
     value: User List
-  - !ruby/object:Proforma::Modeling::Separator {}
-  - !ruby/object:Proforma::Modeling::Text
+  - type: Separator
+  - type: Text
     value: The following is a list of users
-  - !ruby/object:Proforma::Modeling::Spacer {}
-  - !ruby/object:Proforma::Modeling::DataTable
+  - type: Spacer
+  - type: DataTable
     property: users
     aggregators:
-      - !ruby/object:Proforma::Modeling::DataTable::Aggregator
-        property: login_count
+      - property: login_count
         function: sum
         name: login_count_sum
-      - !ruby/object:Proforma::Modeling::DataTable::Aggregator
-        property: login_count
+      - property: login_count
         function: ave
         name: login_count_ave
     columns:
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: ID Number
+    - header: ID Number
       body: $:id
       footer: Login Count Ave.
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: First Name
+    - header: First Name
       body: $:first
       footer: $:login_count_ave
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: Last Name
+    - header: Last Name
       body: $:last
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: Username
+    - header: Username
       body: $:username
       footer: Login Count Sum
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: Login Count
+    - header: Login Count
       footer: $:login_count_sum
       body: $:login_count
-  - !ruby/object:Proforma::Modeling::Grouping
+  - type: Grouping
     property: users
     children:
-    - !ruby/object:Proforma::Modeling::Spacer {}
-    - !ruby/object:Proforma::Modeling::Grouping
+    - type: Spacer
+    - type: Grouping
       children:
-      - !ruby/object:Proforma::Modeling::Header
+      - type: Header
         value: 'User Details'
-      - !ruby/object:Proforma::Modeling::Separator {}
-      - !ruby/object:Proforma::Modeling::Pane
+      - type: Separator
+      - type: Pane
         columns:
-        - !ruby/object:Proforma::Modeling::Pane::Column
-          label_width: 25.0
+        - label_width: 25.0
           lines:
-          - !ruby/object:Proforma::Modeling::Pane::Line
-            label: ID Number
+          - label: ID Number
             value: $:id
-          - !ruby/object:Proforma::Modeling::Pane::Line
-            label: First Name
+          - label: First Name
             value: $:first
-          - !ruby/object:Proforma::Modeling::Pane::Line
-            label: Last Name
+          - label: Last Name
             value: $:last
-      - !ruby/object:Proforma::Modeling::Spacer {}
-      - !ruby/object:Proforma::Modeling::Header
+      - type: Spacer
+      - type: Header
         value: Phone Numbers
-      - !ruby/object:Proforma::Modeling::DataTable
+      - type: DataTable
         property: phone_numbers
         empty_message: No phone numbers.
         columns:
-        - !ruby/object:Proforma::Modeling::DataTable::Column
-          header: Type
+        - header: Type
           body: $:type
-        - !ruby/object:Proforma::Modeling::DataTable::Column
-          header: Number
+        - header: Number
           body: $:number
-      - !ruby/object:Proforma::Modeling::Spacer {}
+      - type: Spacer
 
 strings:
 - >-

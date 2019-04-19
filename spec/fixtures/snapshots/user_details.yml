@@ -24,43 +24,37 @@ data:
   login_count: 190890
   phone_numbers:
 
-template: !ruby/object:Proforma::Template
-  output: :record
+template:
+  split: true
   title: User Details
   children:
-  - !ruby/object:Proforma::Modeling::Header
+  - type: Header
     value: User Details
-  - !ruby/object:Proforma::Modeling::Separator {}
-  - !ruby/object:Proforma::Modeling::Text
+  - type: Separator
+  - type: Text
     value: 'The following is user details'
-  - !ruby/object:Proforma::Modeling::Pane
+  - type: Pane
     columns:
-    - !ruby/object:Proforma::Modeling::Pane::Column
-      label_width: 25.0
+    - label_width: 25.0
       lines:
-      - !ruby/object:Proforma::Modeling::Pane::Line
-        label: ID Number
+      - label: ID Number
         value: $:id
-      - !ruby/object:Proforma::Modeling::Pane::Line
-        label: First Name
+      - label: First Name
         value: $:first
-      - !ruby/object:Proforma::Modeling::Pane::Line
-        label: Last Name
+      - label: Last Name
         value: $:last
-  - !ruby/object:Proforma::Modeling::Spacer {}
-  - !ruby/object:Proforma::Modeling::Header
+  - type: Spacer
+  - type: Header
     value: Phone Numbers
-  - !ruby/object:Proforma::Modeling::DataTable
+  - type: DataTable
     property: phone_numbers
     empty_message: No phone numbers.
     columns:
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: Type
+    - header: Type
       body: $:type
-    - !ruby/object:Proforma::Modeling::DataTable::Column
-      header: Number
+    - header: Number
       body: $:number
-  - !ruby/object:Proforma::Modeling::Spacer {}
+  - type: Spacer
 
 strings:
 - User Details The following is user details ID Number 1 First Name Will

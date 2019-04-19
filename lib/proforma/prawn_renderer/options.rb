@@ -10,7 +10,7 @@
 module Proforma
   class PrawnRenderer
     # A list of options available for customizing the rendering engine.
-    class Options < AttributeBasedObject
+    class Options
       DEFAULT_BOLD_FONT_STYLE   = :bold
       DEFAULT_FONT_NAME         = ''
       DEFAULT_TEXT_FONT_SIZE    = 10
