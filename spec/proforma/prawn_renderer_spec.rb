@@ -28,12 +28,44 @@ describe ::Proforma::PrawnRenderer do
       documents.each_with_index do |document, index|
         expected_strings = contents['strings'][index]
 
-        text_analysis = PDF::Inspector::Text.analyze(document.contents)
-
-        actual_strings = text_analysis.strings.join(' ')
+        actual_strings = pdf_strings(document.contents)
 
         expect(actual_strings).to eq(expected_strings)
       end
     end
+  end
+
+  specify 'Proforma Rendering Example' do
+    data = [
+      { id: 1, name: 'Chicago Bulls' },
+      { id: 2, name: 'Indiana Pacers' },
+      { id: 3, name: 'Boston Celtics' }
+    ]
+
+    template = {
+      title: 'nba_team_list',
+      children: [
+        { type: 'Header', value: 'NBA Teams' },
+        { type: 'Separator' },
+        {
+          type: 'DataTable',
+          columns: [
+            { header: 'Team ID #', body: '$:id' },
+            { header: 'Team Name', body: '$:name' }
+          ]
+        }
+      ]
+    }
+
+    actual_documents = Proforma.render(data, template, renderer: Proforma::PrawnRenderer.new)
+
+    actual_document = actual_documents.first
+
+    expected_strings = 'NBA Teams Team ID # Team Name 1'\
+                       ' Chicago Bulls 2 Indiana Pacers 3 Boston Celtics'
+
+    expect(pdf_strings(actual_document.contents)).to eq(expected_strings)
+    expect(actual_document.title).to                 eq('nba_team_list')
+    expect(actual_document.extension).to             eq('.pdf')
   end
 end

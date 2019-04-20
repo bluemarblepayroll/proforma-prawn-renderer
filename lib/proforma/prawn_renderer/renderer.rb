@@ -29,10 +29,6 @@ module Proforma
 
         total_width * (percentage.to_f / 100)
       end
-
-      def make_text_cell(text, style)
-        pdf.make_cell(text.to_s, style)
-      end
     end
   end
 end

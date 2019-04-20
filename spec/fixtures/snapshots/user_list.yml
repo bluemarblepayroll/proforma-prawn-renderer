@@ -62,17 +62,22 @@ template: !ruby/object:Proforma::Template
     - header: ID Number
       body: $:id
       footer: Login Count Ave.
+      width: 20
     - header: First Name
       body: $:first
       footer: $:login_count_ave
+      width: 20
     - header: Last Name
       body: $:last
+      width: 20
     - header: Username
       body: $:username
       footer: Login Count Sum
+      width: 20
     - header: Login Count
       footer: $:login_count_sum
       body: $:login_count
+      width: 20
   - type: Grouping
     property: users
     children:
@@ -112,7 +117,7 @@ strings:
   Login Count
   1 Will Smith will_smith 9219 2 Martin Lawrence mlaw10 8077
   3 Will Ferrell will.ferrell 190890
-  Login Count Ave. 69395.333333333333333333 Login Count Sum 208186.0
+  Login Count Ave. 69395.333333333333333 333 Login Count Sum 208186.0
   User Details ID Number 1 First Name Will Last Name Smith Phone Numbers Type Number
   cell 555-444-3333 fax 333-444-2222 User Details ID Number 2 First Name Martin Last Name
   Lawrence Phone Numbers Type Number home 999-888-7777 User Details ID Number 3 First Name

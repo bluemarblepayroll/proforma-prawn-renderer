@@ -35,12 +35,16 @@ template:
     value: 'The following is user details'
   - type: Pane
     columns:
-    - label_width: 25.0
+    - label_width: 20.0
       lines:
       - label: ID Number
         value: $:id
+    - label_width: 20.0
+      lines:
       - label: First Name
         value: $:first
+    - label_width: 20.0
+      lines:
       - label: Last Name
         value: $:last
   - type: Spacer

@@ -23,3 +23,7 @@ def yaml_read(file)
   YAML.load(File.open(file))
   # rubocop:enable Security/YAMLLoad
 end
+
+def pdf_strings(rendered_pdf)
+  PDF::Inspector::Text.analyze(rendered_pdf).strings.join(' ')
+end
