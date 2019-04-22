@@ -40,7 +40,7 @@ module Proforma
 
       def value_cell_style(column, column_index, total_columns)
         base_value_cell_style.merge(
-          align: column.align,
+          align: column.align.to_s.to_sym,
           padding: value_cell_padding(column_index, total_columns)
         )
       end

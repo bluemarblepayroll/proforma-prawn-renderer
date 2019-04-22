@@ -14,8 +14,8 @@ module Proforma
     # This class understands how to ender a Proforma::Modeling::Table component.
     class TableRenderer < Renderer
       def render(table)
-        row_for_widths  = table.header.rows.first
-        column_widths   = row_for_widths ? make_column_widths(row_for_widths) : {}
+        prototype_row = table.header.rows.first
+        column_widths = prototype_row ? make_column_widths(prototype_row) : {}
 
         pdf.table(
           make_all_rows(table),
@@ -35,7 +35,11 @@ module Proforma
       def make_rows(section, cell_style)
         section.rows.map do |row|
           row.cells.map do |cell|
-            pdf.make_cell(cell.text.to_s, cell_style)
+            immediate_style = {}.tap do |hash|
+              hash[:align] = cell.align.to_s.to_sym
+            end
+
+            pdf.make_cell(cell.text.to_s, cell_style.merge(immediate_style))
           end
         end
       end
