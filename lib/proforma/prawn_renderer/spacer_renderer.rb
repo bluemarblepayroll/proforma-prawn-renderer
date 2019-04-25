@@ -11,9 +11,11 @@ require_relative 'renderer'
 
 module Proforma
   class PrawnRenderer
-    # This class understands how to ender a Proforma::Modeling::Separator component.
+    # This class understands how to ender a Proforma::Modeling::Spacer component.
     class SpacerRenderer < Renderer
       AMOUNT = 15
+
+      private_constant :AMOUNT
 
       def render(_separator)
         pdf.move_down(AMOUNT)

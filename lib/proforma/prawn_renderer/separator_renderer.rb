@@ -15,6 +15,8 @@ module Proforma
     class SeparatorRenderer < Renderer
       WIDTH = 0.5
 
+      private_constant :WIDTH
+
       def render(_separator)
         pdf.line_width(WIDTH)
         pdf.stroke_horizontal_rule

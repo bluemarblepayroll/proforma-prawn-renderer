@@ -35,9 +35,9 @@ module Proforma
       def make_rows(section, cell_style)
         section.rows.map do |row|
           row.cells.map do |cell|
-            immediate_style = {}.tap do |hash|
-              hash[:align] = cell.align.to_s.to_sym
-            end
+            immediate_style = {
+              align: cell.align.to_s.to_sym
+            }
 
             pdf.make_cell(cell.text.to_s, cell_style.merge(immediate_style))
           end
