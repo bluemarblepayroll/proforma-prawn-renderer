@@ -9,9 +9,7 @@ require 'pry'
 require 'pdf/inspector'
 
 def read_yaml(filename)
-  # rubocop:disable Security/YAMLLoad
-  YAML.load(read(filename))
-  # rubocop:enable Security/YAMLLoad
+  YAML.safe_load(read(filename))
 end
 
 def read(filename)

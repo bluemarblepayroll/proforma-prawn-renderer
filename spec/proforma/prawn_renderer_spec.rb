@@ -21,8 +21,7 @@ describe ::Proforma::PrawnRenderer do
       documents = Proforma.render(
         contents['data'],
         contents['template'],
-        evaluator: contents['evaluator'] || Proforma::HashEvaluator.new,
-        renderer: contents['renderer'] || Proforma::PrawnRenderer.new
+        renderer: Proforma::PrawnRenderer.new
       )
 
       documents.each_with_index do |document, index|

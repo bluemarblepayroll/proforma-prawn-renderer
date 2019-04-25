@@ -19,9 +19,7 @@ SimpleCov.start
 require './lib/proforma/prawn_renderer'
 
 def yaml_read(file)
-  # rubocop:disable Security/YAMLLoad
-  YAML.load(File.open(file))
-  # rubocop:enable Security/YAMLLoad
+  YAML.safe_load(File.open(file))
 end
 
 def pdf_strings(rendered_pdf)
