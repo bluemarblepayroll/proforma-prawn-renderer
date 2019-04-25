@@ -67,4 +67,17 @@ describe ::Proforma::PrawnRenderer do
     expect(actual_document.title).to                 eq('nba_team_list')
     expect(actual_document.extension).to             eq('.pdf')
   end
+
+  specify 'a pdf-to-pdf comparison should be equal' do
+    pdf     = read(File.join('spec', 'fixtures', 'component_test.pdf'))
+    config  = yaml_read(File.join('spec', 'fixtures', 'component_test.yml'))
+
+    documents = Proforma.render(
+      config['data'],
+      config['template'],
+      renderer: Proforma::PrawnRenderer.new
+    )
+
+    expect(documents.first.contents).to eq(pdf)
+  end
 end

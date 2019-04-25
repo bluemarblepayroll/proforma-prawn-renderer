@@ -18,6 +18,10 @@ SimpleCov.start
 
 require './lib/proforma/prawn_renderer'
 
+def read(file)
+  File.open(file, 'rb').read
+end
+
 def yaml_read(file)
   YAML.safe_load(File.open(file))
 end
