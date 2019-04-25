@@ -65,8 +65,8 @@ module Proforma
         @cell_style ||= {
           border_width: 0,
           padding: 0,
-          font: options.font_name,
-          size: options.text_font_size
+          font: font_name,
+          size: text_font_size
         }
       end
 

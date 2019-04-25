@@ -59,9 +59,9 @@ module Proforma
       def cell_style
         @cell_style ||= {
           border_width: 0.5,
-          font: options.font_name,
+          font: font_name,
           padding: 3,
-          size: options.text_font_size
+          size: text_font_size
         }
       end
 
@@ -75,7 +75,7 @@ module Proforma
         @header_cell_style ||= cell_style.merge(
           background_color: 'D3D3D3',
           borders: [],
-          font_style: options.bold_font_style
+          font_style: bold_font_style
         )
       end
 
@@ -83,7 +83,7 @@ module Proforma
         @footer_cell_style ||= cell_style.merge(
           background_color: 'F4F4F4',
           borders: [],
-          font_style: options.bold_font_style
+          font_style: bold_font_style
         )
       end
     end

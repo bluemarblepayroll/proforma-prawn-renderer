@@ -7,13 +7,13 @@
 # LICENSE file in the root directory of this source tree.
 #
 
+require 'forwardable'
 require 'prawn'
 require 'prawn/table'
 require 'proforma'
 
 require_relative 'prawn_renderer/banner_renderer'
 require_relative 'prawn_renderer/header_renderer'
-require_relative 'prawn_renderer/options'
 require_relative 'prawn_renderer/pane_renderer'
 require_relative 'prawn_renderer/renderer'
 require_relative 'prawn_renderer/separator_renderer'
@@ -25,6 +25,13 @@ module Proforma
   # This main class to use as a Proforma renderer.
   class PrawnRenderer
     EXTENSION = '.pdf'
+
+    DEFAULT_OPTIONS = {
+      bold_font_style: :bold,
+      font_name: nil,
+      text_font_size: 10,
+      header_font_size: 15
+    }.freeze
 
     RENDERERS = {
       Modeling::Banner => BannerRenderer,
@@ -40,8 +47,8 @@ module Proforma
 
     attr_reader :options
 
-    def initialize(options = Options.new)
-      @options = options || Options.new
+    def initialize(options = {})
+      @options = OpenStruct.new(DEFAULT_OPTIONS.merge(options))
 
       clear
     end

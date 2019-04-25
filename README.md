@@ -77,7 +77,7 @@ All options for Prawn are passed through the Proforma::PrawnRenderer::Options ob
 
 Name             | Default
 ---------------- | -------
-bold_font_style  | :bold
+bold_font_style  | bold
 header_font_size | 15
 text_font_size   | 10
 font_name        | null

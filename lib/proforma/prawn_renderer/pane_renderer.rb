@@ -85,16 +85,16 @@ module Proforma
       def base_value_cell_style
         @base_value_cell_style ||= {
           border_width: 0,
-          font: options.font_name,
+          font: font_name,
           padding: [2, 0, 2, 2],
-          size: options.text_font_size
+          size: text_font_size
         }
       end
 
       def base_label_cell_style
         @base_label_cell_style ||= base_value_cell_style.merge(
           padding: [2, 2, 2, 0],
-          font_style: options.bold_font_style
+          font_style: bold_font_style
         )
       end
     end

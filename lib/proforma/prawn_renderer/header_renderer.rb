@@ -16,9 +16,9 @@ module Proforma
       def render(text)
         pdf.text(
           text.value.to_s,
-          font: options.font_name,
-          size: options.header_font_size,
-          style: options.bold_font_style
+          font: font_name,
+          size: header_font_size,
+          style: bold_font_style
         )
       end
     end
