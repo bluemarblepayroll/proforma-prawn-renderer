@@ -60,23 +60,23 @@ template: !ruby/object:Proforma::Template
         name: login_count_ave
     columns:
     - header: ID Number
-      body: $:id
+      body: $id
       footer: Login Count Ave.
       width: 20
     - header: First Name
-      body: $:first
-      footer: $:login_count_ave
+      body: $first
+      footer: $login_count_ave
       width: 20
     - header: Last Name
-      body: $:last
+      body: $last
       width: 20
     - header: Username
-      body: $:username
+      body: $username
       footer: Login Count Sum
       width: 20
     - header: Login Count
-      footer: $:login_count_sum
-      body: $:login_count
+      footer: $login_count_sum
+      body: $login_count
       width: 20
   - type: Grouping
     property: users
@@ -92,11 +92,11 @@ template: !ruby/object:Proforma::Template
         - label_width: 25.0
           lines:
           - label: ID Number
-            value: $:id
+            value: $id
           - label: First Name
-            value: $:first
+            value: $first
           - label: Last Name
-            value: $:last
+            value: $last
       - type: Spacer
       - type: Header
         value: Phone Numbers
@@ -105,9 +105,9 @@ template: !ruby/object:Proforma::Template
         empty_message: No phone numbers.
         columns:
         - header: Type
-          body: $:type
+          body: $type
         - header: Number
-          body: $:number
+          body: $number
       - type: Spacer
 
 strings:

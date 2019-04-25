@@ -38,15 +38,15 @@ template:
     - label_width: 20.0
       lines:
       - label: ID Number
-        value: $:id
+        value: $id
     - label_width: 20.0
       lines:
       - label: First Name
-        value: $:first
+        value: $first
     - label_width: 20.0
       lines:
       - label: Last Name
-        value: $:last
+        value: $last
   - type: Spacer
   - type: Header
     value: Phone Numbers
@@ -55,9 +55,9 @@ template:
     empty_message: No phone numbers.
     columns:
     - header: Type
-      body: $:type
+      body: $type
     - header: Number
-      body: $:number
+      body: $number
   - type: Spacer
 
 strings:

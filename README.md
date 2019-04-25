@@ -47,8 +47,8 @@ template = {
     {
       type: 'DataTable',
       columns: [
-        { header: 'Team ID #', body: '$:id' },
-        { header: 'Team Name', body: '$:name' },
+        { header: 'Team ID #', body: '$id' },
+        { header: 'Team Name', body: '$name' },
       ]
     }
   ]
