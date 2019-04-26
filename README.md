@@ -18,6 +18,12 @@ You can also add this to your Gemfile:
 bundle add proforma-prawn-renderer
 ````
 
+Note: If you are using bundler for auto-requiring then you need to specify as:
+
+```
+gem 'proforma-prawn-renderer', require: 'proforma/prawn_renderer'
+```
+
 ## Examples
 
 ### Connecting to Proforma Rendering Pipeline
